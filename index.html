@@ -3,24 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factorio Server Tutorial</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>GrapesJS Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.16.24/css/grapes.min.css">
+    <style>
+        /* Additional CSS for layout */
+        .container {
+            display: flex; /* Use flexbox to align items side by side */
+            gap: 20px; /* Space between the boxes */
+        }
+        .my-section {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            flex: 1; /* Allow boxes to grow equally */
+        }
+        .my-section h1 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <div class="window">
-        <div class="title-bar">
-            <div class="title">Factorio Server Tutorial</div>
-        </div>
-        <div class="content">
-            <h1>How to Download and Connect to My Factorio Server</h1>
-            <h2>Step 1: Download Factorio</h2>
-            <p>Visit the <a href="https://factorio.com/download">Factorio website</a> to download the game.</p>
-            <h2>Step 2: Connect to the Server</h2>
-            <p>Open Factorio and go to the "Multiplayer" menu. Enter the server address: <strong>your.server.ip:port</strong></p>
-            <h2>Step 3: Enjoy!</h2>
-            <p>Join the game and have fun!</p>
-        </div>
-    </div>
+    <div id="gjs" style="height: 100vh; overflow: hidden;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.16.24/grapes.min.js"></script>
+    <script>
+        const editor = grapesjs.init({
+            container: '#gjs',
+            fromElement: true,
+            height: '100%',
+            width: 'auto',
+            storageManager: { autoload: 0 },
+        });
+
+        // Import HTML with two boxes
+        const htmlContent = `
+            <div class="container">
+                <div class="my-section">
+                    <h1>Box 1</h1>
+                    <p>This is the first box.</p>
+                </div>
+                <div class="my-section">
+                    <h1>Box 2</h1>
+                    <p>This is the second box.</p>
+                </div>
+            </div>
+        `;
+        editor.setComponents(htmlContent);
+
+        // Import CSS
+        const cssContent = `
+            .my-section {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border: 1px solid #ccc;
+            }
+            .my-section h1 {
+                color: #333;
+            }
+            .container {
+                display: flex; /* Use flexbox to align items side by side */
+                gap: 20px; /* Space between the boxes */
+            }
+        `;
+        editor.addStyle(cssContent);
+    </script>
 </body>
 </html>
 
